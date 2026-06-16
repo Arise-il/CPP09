@@ -6,7 +6,7 @@
 /*   By: iel-ghou <iel-ghou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 16:28:23 by iel-ghou          #+#    #+#             */
-/*   Updated: 2026/06/11 18:00:54 by iel-ghou         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:01:21 by iel-ghou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,6 @@ void BitcoinExchange::process_file(const std::string &file_name)
             std::cout << "Error: too large a number." << std::endl;
             continue;
         }
-
-        /* ===== Find closest lower date ===== */
 
         std::map<std::string, double>::iterator it = _data_base.lower_bound(date);
 

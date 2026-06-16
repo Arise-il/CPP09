@@ -6,7 +6,7 @@
 /*   By: iel-ghou <iel-ghou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:33:52 by iel-ghou          #+#    #+#             */
-/*   Updated: 2026/06/16 15:25:40 by iel-ghou         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:08:07 by iel-ghou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,22 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
+    if (argc < 2)
     {
-        std::cerr << "ONE ARGUMENT PLS !!!!!" << std::endl;
+        std::cerr << "Error: Please provide at least one argument!" << std::endl;
         return (1);
     }
 
     try
     {
+        std::string combined_arg = argv[1];
+        for (int i = 2; i < argc; ++i)
+        {
+            combined_arg += " ";
+            combined_arg += argv[i];
+        }
         PmergeMe vec;
-        vec.parse(argv[1]);
+        vec.parse(combined_arg);
     }
     catch (const std::exception &e)
     {

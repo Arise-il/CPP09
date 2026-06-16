@@ -6,7 +6,7 @@
 /*   By: iel-ghou <iel-ghou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:48:18 by iel-ghou          #+#    #+#             */
-/*   Updated: 2026/06/16 15:46:00 by iel-ghou         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:13:04 by iel-ghou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include <vector>
 # include <deque>
 # include <string>
+
+# include <iostream>
+# include <sstream>
+# include <stdexcept>
+# include <ctime>
+# include <algorithm>
+# include <climits>
+# include <iomanip>
 
 class PmergeMe
 {

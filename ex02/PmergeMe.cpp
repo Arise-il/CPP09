@@ -6,19 +6,11 @@
 /*   By: iel-ghou <iel-ghou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:52:44 by iel-ghou          #+#    #+#             */
-/*   Updated: 2026/06/16 15:53:45 by iel-ghou         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:16:38 by iel-ghou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <sstream>
-#include <stdexcept>
-#include <ctime>
-#include <algorithm>
-#include <climits>
 #include "PmergeMe.hpp"
-
-// ── Canonical form ────────────────────────────────────────────────────────────
 
 PmergeMe::PmergeMe() {}
 
@@ -37,7 +29,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 
 PmergeMe::~PmergeMe() {}
 
-// ── Binary-search insertion helpers ──────────────────────────────────────────
 std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t size)
 {
     std::vector<size_t> order;
@@ -89,37 +80,35 @@ std::vector<size_t> PmergeMe::buildJacobsthalOrder(size_t size)
 
 void PmergeMe::insertionSortVector(std::vector<int> &arr, int val)
 {
-    int lo = 0;
-    int hi = static_cast<int>(arr.size());
+    int low = 0;
+    int high = static_cast<int>(arr.size());
 
-    while (lo < hi)
+    while (low < high)
     {
-        int mid = lo + (hi - lo) / 2;
+        int mid = low + (high - low) / 2;
         if (arr[mid] < val)
-            lo = mid + 1;
+            low = mid + 1;
         else
-            hi = mid;
+            high = mid;
     }
-    arr.insert(arr.begin() + lo, val);
+    arr.insert(arr.begin() + low, val);
 }
 
 void PmergeMe::insertionSortDeque(std::deque<int> &arr, int val)
 {
-    int lo = 0;
-    int hi = static_cast<int>(arr.size());
+    int low = 0;
+    int high = static_cast<int>(arr.size());
 
-    while (lo < hi)
+    while (low < high)
     {
-        int mid = lo + (hi - lo) / 2;
+        int mid = low + (high - low) / 2;
         if (arr[mid] < val)
-            lo = mid + 1;
+            low = mid + 1;
         else
-            hi = mid;
+            high = mid;
     }
-    arr.insert(arr.begin() + lo, val);
+    arr.insert(arr.begin() + low, val);
 }
-
-// ── Ford-Johnson (merge-insertion) sort ──────────────────────────────────────
 
 void PmergeMe::mergeInsertVector(std::vector<int> &arr)
 {
@@ -206,8 +195,6 @@ void PmergeMe::mergeInsertDeque(std::deque<int> &arr)
     arr = sorted;
 }
 
-// ── Sorting wrappers (with timing) ───────────────────────────────────────────
-
 void PmergeMe::sortVector()
 {
     std::clock_t start = std::clock();
@@ -224,9 +211,10 @@ void PmergeMe::sortVector()
 
     std::cout << "Time to process a range of " << _vec.size()
               << " elements with std::vector : "
+              << std::fixed << std::setprecision(5)
               << elapsed << " us" << std::endl;
 }
-
+#include <sys/time.h>
 void PmergeMe::sortDeque()
 {
     std::clock_t start = std::clock();
@@ -238,10 +226,9 @@ void PmergeMe::sortDeque()
 
     std::cout << "Time to process a range of " << _deq.size()
               << " elements with std::deque  : "
+              << std::fixed << std::setprecision(5)
               << elapsed << " us" << std::endl;
 }
-
-// ── Verification ─────────────────────────────────────────────────────────────
 
 bool PmergeMe::verifyVector() const
 {
@@ -258,8 +245,6 @@ bool PmergeMe::verifyDeque() const
             return false;
     return true;
 }
-
-// ── Parse & run ──────────────────────────────────────────────────────────────
 
 void PmergeMe::parse(const std::string &input)
 {
